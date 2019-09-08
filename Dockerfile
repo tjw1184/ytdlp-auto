@@ -15,13 +15,14 @@ LABEL org.label-schema.build-date=$BUILD_DATE \
       org.label-schema.version=$VERSION \
       org.label-schema.schema-version="1.0"
 
+# setup paths 
+RUN mkdir /youtubedl
+RUN mkdir /youtubedl/downloads
 
 ## document ports and volumes to be remapped
 VOLUME /youtubedl/downloads
 
-# setup paths and default files
-RUN mkdir /youtubedl
-RUN mkdir /youtubedl/downloads
+# setup default files
 ADD youtube-dl-channels.txt /youtubedl
 ADD youtube-dl-archive.txt /youtubedl
 ADD youtube-dl.conf /youtubedl
