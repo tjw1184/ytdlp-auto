@@ -5,9 +5,9 @@ ARG BUILD_DATE
 ARG VCS_REF
 ARG VERSION
 LABEL org.label-schema.build-date=$BUILD_DATE \
-      org.label-schema.name="Bandersnatch" \
+      org.label-schema.name="youtubedl-auto" \
       org.label-schema.maintainer="tjw1184" \      
-      org.label-schema.description="Preconfigured youtubedl auto Server" \
+      org.label-schema.description="Preconfigured youtubedl-auto Server" \
       org.label-schema.url="https://github.com/tjw1184/youtubedl-auto" \
       org.label-schema.vcs-ref=$VCS_REF \
       org.label-schema.vcs-url="https://github.com/tjw1184/youtubedl-auto" \
@@ -23,6 +23,7 @@ RUN mkdir /youtubedl/downloads
 VOLUME /youtubedl/downloads
 
 # setup default files
+ADD runner.py /youtubedl
 ADD youtube-dl-channels.txt /youtubedl
 ADD youtube-dl-archive.txt /youtubedl
 ADD youtube-dl.conf /youtubedl
@@ -36,5 +37,5 @@ RUN pip install --upgrade pip
 RUN pip install --upgrade youtube-dl
 
 # Runs a sync once a day
-#CMD ["python", "/src/runner.py", "3600"]
-RUN /bin/bash
+CMD ["python", "/youtubedl/runner.py", "3600"]
+#RUN /bin/bash
