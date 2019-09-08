@@ -10,7 +10,7 @@ from subprocess import run
 
 def main() -> None:
     parser = argparse.ArgumentParser()
-    parser.add_argument("interval", help="Time in seconds between jobs")
+    parser.add_argument("interval", type=float, help="Time in seconds between jobs")
     args = parser.parse_args()
 
     print(f"Running youtubedl-auto every {args.interval}s", file=sys.stderr)
