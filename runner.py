@@ -16,6 +16,7 @@ def main() -> None:
     print(f"Running bandersnatch every {args.interval}s", file=sys.stderr)
     while True:
         start_time = time.time()
+        run(["pip", "install", "--upgrade", "youtube-dl"])
         run(["/usr/local/bin/youtube-dl", "--config-location", "/youtubedl/youtube-dl.conf"])
         run_time = time.time() - start_time
         if run_time < args.interval:
