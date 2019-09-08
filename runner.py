@@ -13,7 +13,7 @@ def main() -> None:
     parser.add_argument("interval", help="Time in seconds between jobs")
     args = parser.parse_args()
 
-    print(f"Running bandersnatch every {args.interval}s", file=sys.stderr)
+    print(f"Running youtubedl-auto every {args.interval}s", file=sys.stderr)
     while True:
         start_time = time.time()
         run(["pip", "install", "--upgrade", "youtube-dl"])
