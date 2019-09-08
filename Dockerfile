@@ -20,8 +20,8 @@ LABEL org.label-schema.build-date=$BUILD_DATE \
 VOLUME /youtubedl/downloads
 
 # setup paths and default files
-mkdir /youtubedl
-mkdir /youtubedl/downloads
+RUN mkdir /youtubedl
+RUN mkdir /youtubedl/downloads
 ADD youtube-dl-channels.txt /youtubedl
 ADD youtube-dl-archive.txt /youtubedl
 ADD youtube-dl.conf /youtubedl
