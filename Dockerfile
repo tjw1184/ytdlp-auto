@@ -37,5 +37,5 @@ RUN pip install --upgrade pip
 RUN pip install --upgrade youtube-dl
 
 # Runs a sync once a day
-CMD ["python", "/youtubedl/runner.py", "3600"]
+CMD ["python", "/youtubedl/runner.py", "86400"]
 #RUN /bin/bash
