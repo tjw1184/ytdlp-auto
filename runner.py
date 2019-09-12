@@ -21,6 +21,7 @@ def main() -> None:
         run_time = time.time() - start_time
         if run_time < args.interval:
             sleep_time = args.interval - run_time
+            print(f"Ran for {run_time}s", file=sys.stderr)
             print(f"Sleeping for {sleep_time}s", file=sys.stderr)
             time.sleep(sleep_time)
 
