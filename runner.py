@@ -16,7 +16,19 @@ def main() -> None:
     print(f"Running youtubedl-auto every {args.interval}s", file=sys.stderr)
     while True:
         start_time = time.time()
-        run(["pip", "install", "--upgrade", "youtube-dl"])
+        
+        # Dirty hack to implement the 429 error workaround provided by colethedj, lock to 11-28 branch for now
+        # https://gitlab.com/colethedj/youtube-dl-429-patch
+        run(["cd","/temp"])
+        run(["git","clone","https://github.com/ytdl-org/youtube-dl.git","-b","2019.11.28","--depth","1"])
+        run(["git","clone","https://gitlab.com/colethedj/youtube-dl-429-patch.git"])
+        run(["cd","youtube-dl/youtube_dl"])
+        run(["git","apply","../../youtube-dl-429-patch/youtube.py.patch"])
+        run(["cd",".."])
+        run(["pip3","install","."])
+        
+        # re-enable when hack no longer needed
+        #run(["pip", "install", "--upgrade", "youtube-dl"])
         run(["/usr/local/bin/youtube-dl", "--config-location", "/youtubedl/youtube-dl.conf"])
         run_time = time.time() - start_time
         if run_time < args.interval:
