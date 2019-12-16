@@ -30,7 +30,7 @@ ADD youtube-dl.conf /youtubedl
 
 # Update packages and install ffmpeg.  
 RUN apt-get update   
-RUN apt-get install -y ffmpeg
+RUN apt-get install -y ffmpeg nano
 RUN rm -rf /var/lib/apt/lists/*  
 
 RUN pip install --upgrade pip
