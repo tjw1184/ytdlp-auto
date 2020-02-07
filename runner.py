@@ -18,11 +18,11 @@ def main() -> None:
     while True:
         start_time = time.time()
         
-        # Dirty hack to implement the 429 error workaround provided by colethedj, lock to 11-28 branch for now
+        # Dirty hack to implement the 429 error workaround provided by colethedj, lock to 1-24-20 branch for now
         # https://gitlab.com/colethedj/youtube-dl-429-patch
         prevdir = os.getcwd()
         os.chdir("/temp")
-        run(["/usr/bin/git","clone","https://github.com/ytdl-org/youtube-dl.git","-b","2019.11.28","--depth","1"])
+        run(["/usr/bin/git","clone","https://github.com/ytdl-org/youtube-dl.git","-b","2020.01.24","--depth","1"])
         run(["/usr/bin/git","clone","https://gitlab.com/colethedj/youtube-dl-429-patch.git"])
         os.chdir("/temp/youtube-dl/youtube_dl")
         run(["/usr/bin/git","apply","../../youtube-dl-429-patch/youtube.py.patch"])
