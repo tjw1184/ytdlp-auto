@@ -35,13 +35,13 @@ def main() -> None:
         start_time = time.time()
         
         # if configs folder doesn't have config files then copy the defaults
-        if path.exists("/youtubedl/configs/youtube-dl.conf") not True:
+        if not path.exists("/youtubedl/configs/youtube-dl.conf"):
             shutil.copyfile("/youtubedl/origconfigs/youtube-dl.conf","/youtubedl/configs/youtube-dl.conf")
-        if path.exists("/youtubedl/configs/youtube-dl-archive.txt") not True:
+        if not path.exists("/youtubedl/configs/youtube-dl-archive.txt"):
             shutil.copyfile("/youtubedl/origconfigs/youtube-dl-archive.txt","/youtubedl/configs/youtube-dl-archive.txt")
-        if path.exists("/youtubedl/configs/youtube-dl-channels.txt") not True:
+        if not path.exists("/youtubedl/configs/youtube-dl-channels.txt"):
             shutil.copyfile("/youtubedl/origconfigs/youtube-dl-channels.txt","/youtubedl/configs/youtube-dl-channels.txt")            
-        if path.exists("/youtubedl/configs/counter.txt") not True:
+        if not path.exists("/youtubedl/configs/counter.txt"):
             shutil.copyfile("/youtubedl/origconfigs/counter.txt","/youtubedl/configs/counter.txt")          
         
         # Dirty hack to implement the 429 error workaround provided by colethedj, lock to 2-16-20 branch for now
