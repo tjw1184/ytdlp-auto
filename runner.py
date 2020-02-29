@@ -6,7 +6,9 @@ import argparse
 import os
 import sys
 import time
+import shutil
 from subprocess import run
+from os import path
 
 
 def main() -> None:
@@ -18,11 +20,21 @@ def main() -> None:
     while True:
         start_time = time.time()
         
-        # Dirty hack to implement the 429 error workaround provided by colethedj, lock to 1-24-20 branch for now
+        # if configs folder doesn't have config files then copy the defaults
+        if path.exists("/youtubedl/configs/youtube-dl.conf") not True:
+            shutil.copyfile("/youtubedl/origconfigs/youtube-dl.conf","/youtubedl/configs/youtube-dl.conf")
+        if path.exists("/youtubedl/configs/youtube-dl-archive.txt") not True:
+            shutil.copyfile("/youtubedl/origconfigs/youtube-dl-archive.txt","/youtubedl/configs/youtube-dl-archive.txt")
+        if path.exists("/youtubedl/configs/youtube-dl-channels.txt") not True:
+            shutil.copyfile("/youtubedl/origconfigs/youtube-dl-channels.txt","/youtubedl/configs/youtube-dl-channels.txt")            
+        if path.exists("/youtubedl/configs/counter.txt") not True:
+            shutil.copyfile("/youtubedl/origconfigs/counter.txt","/youtubedl/configs/counter.txt")          
+        
+        # Dirty hack to implement the 429 error workaround provided by colethedj, lock to 2-16-20 branch for now
         # https://gitlab.com/colethedj/youtube-dl-429-patch
         prevdir = os.getcwd()
         os.chdir("/temp")
-        run(["/usr/bin/git","clone","https://github.com/ytdl-org/youtube-dl.git","-b","2020.01.24","--depth","1"])
+        run(["/usr/bin/git","clone","https://github.com/ytdl-org/youtube-dl.git","-b","2020.02.16","--depth","1"])
         run(["/usr/bin/git","clone","https://gitlab.com/colethedj/youtube-dl-429-patch.git"])
         os.chdir("/temp/youtube-dl/youtube_dl")
         run(["/usr/bin/git","apply","../../youtube-dl-429-patch/youtube.py.patch"])
@@ -32,7 +44,7 @@ def main() -> None:
         
         # re-enable when hack no longer needed
         #run(["pip", "install", "--upgrade", "youtube-dl"])
-        run(["/usr/local/bin/youtube-dl", "--config-location", "/youtubedl/youtube-dl.conf"])
+        run(["/usr/local/bin/youtube-dl", "--config-location", "/youtubedl/configs/youtube-dl.conf"])
         run_time = time.time() - start_time
         if run_time < args.interval:
             sleep_time = args.interval - run_time
