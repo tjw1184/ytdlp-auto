@@ -31,6 +31,7 @@ ADD runner.py /youtubedl
 ADD youtube-dl-channels.txt /youtubedl/origconfigs
 ADD youtube-dl-archive.txt /youtubedl/origconfigs
 ADD youtube-dl.conf /youtubedl/origconfigs
+ADD counter.txt /youtubedl/origconfigs
 
 # Update packages and install ffmpeg.  
 RUN apt-get update   
