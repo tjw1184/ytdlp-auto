@@ -12,11 +12,25 @@ from os import path
 
 
 def main() -> None:
-    parser = argparse.ArgumentParser()
-    parser.add_argument("interval", type=float, help="Time in seconds between jobs")
-    args = parser.parse_args()
-
-    print(f"Running youtubedl-auto every {args.interval}s", file=sys.stderr)
+    #parser = argparse.ArgumentParser()
+    #parser.add_argument("interval", type=float, help="Time in seconds between jobs")
+    #args = parser.parse_args()
+    
+    # interval counter, default to 1 week 1 second (should be overrode by counter.txt)
+    intervalcounter = float(604801.0)
+    
+    # try to read counter file
+    try:
+        infile = open("/youtubedl/configs/counter.txt","r")
+        line = infile.readline()
+        test=float(line)
+        # minimum run time of 1 hour
+        if test >= 3600:
+            intervalcounter=test
+    except:
+        print("bad counter.txt file")
+    
+    print(f"Running youtubedl-auto every {intervalcounter}s", file=sys.stderr)
     while True:
         start_time = time.time()
         
@@ -46,8 +60,8 @@ def main() -> None:
         #run(["pip", "install", "--upgrade", "youtube-dl"])
         run(["/usr/local/bin/youtube-dl", "--config-location", "/youtubedl/configs/youtube-dl.conf"])
         run_time = time.time() - start_time
-        if run_time < args.interval:
-            sleep_time = args.interval - run_time
+        if run_time < intervalcounter:
+            sleep_time = intervalcounter - run_time
             print(f"Ran for {run_time}s", file=sys.stderr)
             print(f"Sleeping for {sleep_time}s", file=sys.stderr)
             time.sleep(sleep_time)
