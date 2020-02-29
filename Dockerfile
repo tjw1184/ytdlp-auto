@@ -18,16 +18,19 @@ LABEL org.label-schema.build-date=$BUILD_DATE \
 # setup paths 
 RUN mkdir /youtubedl
 RUN mkdir /youtubedl/downloads
+RUN mkdir /youtubedl/configs
+RUN mkdir /youtubedl/origconfigs
 RUN mkdir /temp
 
 ## document ports and volumes to be remapped
 VOLUME /youtubedl/downloads
+VOLUME /youtubedl/configs
 
 # setup default files
 ADD runner.py /youtubedl
-ADD youtube-dl-channels.txt /youtubedl
-ADD youtube-dl-archive.txt /youtubedl
-ADD youtube-dl.conf /youtubedl
+ADD youtube-dl-channels.txt /youtubedl/origconfigs
+ADD youtube-dl-archive.txt /youtubedl/origconfigs
+ADD youtube-dl.conf /youtubedl/origconfigs
 
 # Update packages and install ffmpeg.  
 RUN apt-get update   
