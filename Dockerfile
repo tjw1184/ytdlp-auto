@@ -17,14 +17,14 @@ LABEL org.label-schema.build-date=$BUILD_DATE \
 
 # setup paths 
 RUN mkdir /youtubedl
-RUN mkdir /youtubedl/downloads
-RUN mkdir /youtubedl/configs
+RUN mkdir /downloads
+RUN mkdir /configs
 RUN mkdir /youtubedl/origconfigs
 RUN mkdir /temp
 
 ## document ports and volumes to be remapped
-VOLUME /youtubedl/downloads
-VOLUME /youtubedl/configs
+VOLUME /downloads
+VOLUME /configs
 
 # setup default files
 ADD runner.py /youtubedl
