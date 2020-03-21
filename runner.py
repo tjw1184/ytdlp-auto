@@ -50,7 +50,7 @@ def main() -> None:
         run(["/usr/bin/git","clone","https://github.com/ytdl-org/youtube-dl.git","-b","2020.03.08","--depth","1"])
         run(["/usr/bin/git","clone","https://gitlab.com/colethedj/youtube-dl-429-patch.git"])
         os.chdir("/temp/youtube-dl/youtube_dl")
-        run(["/usr/bin/git","apply","../../youtube-dl-429-patch/youtube.py.patch"])
+        run(["/usr/bin/git","apply","../../youtube-dl-429-patch/youtube_dl_429.patch"])
         os.chdir("/temp/youtube-dl")
         run(["/usr/local/bin/pip3","install","."])
         os.chdir(prevdir)
