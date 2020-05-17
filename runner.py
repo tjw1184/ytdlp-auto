@@ -47,11 +47,16 @@ def main() -> None:
         # https://gitlab.com/colethedj/youtube-dl-429-patch
         prevdir = os.getcwd()
         os.chdir("/temp")
-        run(["/usr/bin/git","clone","https://github.com/ytdl-org/youtube-dl.git","-b","2020.03.08","--depth","1"])
-        run(["/usr/bin/git","clone","https://gitlab.com/colethedj/youtube-dl-429-patch.git"])
-        os.chdir("/temp/youtube-dl/youtube_dl")
-        run(["/usr/bin/git","apply","../../youtube-dl-429-patch/youtube_dl_429.patch"])
-        os.chdir("/temp/youtube-dl")
+        
+        # Updated youtube-dl broke the patch, so had to clone and hack the whole branch
+        #run(["/usr/bin/git","clone","https://github.com/ytdl-org/youtube-dl.git","-b","2020.03.08","--depth","1"])
+        #run(["/usr/bin/git","clone","https://gitlab.com/colethedj/youtube-dl-429-patch.git"])
+        #os.chdir("/temp/youtube-dl/youtube_dl")
+        #run(["/usr/bin/git","apply","../../youtube-dl-429-patch/youtube_dl_429.patch"])
+        #os.chdir("/temp/youtube-dl")
+        
+        run(["/usr/bin/git","clone","https://github.com/tjw1184/youtube-dl-429.git","-b","2020.05.08.429fix","--depth","1"])
+        os.chdir("/temp/youtube-dl-429")
         run(["/usr/local/bin/pip3","install","."])
         os.chdir(prevdir)
         
