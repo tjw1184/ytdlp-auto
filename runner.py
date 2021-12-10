@@ -31,7 +31,7 @@ def main() -> None:
     except:
         print("bad counter.txt file")
     
-    print(f"Running youtubedl-auto every {intervalcounter}s", file=sys.stderr)
+    print(f"Running ytdlp-auto every {intervalcounter}s", file=sys.stderr)
     while True:
         start_time = time.time()
         
@@ -44,10 +44,14 @@ def main() -> None:
             shutil.copyfile("/youtubedl/origconfigs/youtube-dl-channels.txt","/configs/youtube-dl-channels.txt")                     
                
         # make sure running latest youtube-dl
-        run(["pip", "install", "--upgrade", "youtube-dl"])
+        run(["pip", "install", "--upgrade", "pip"])      
+        run(["pip", "install", "--upgrade", "yt-dlp"])
+        run(["pip", "install", "--upgrade", "pycryptodomex"])
+        run(["pip", "install", "--upgrade", "websockets"])
+
         
         # run youtubedl every interval seconds
-        run(["/usr/local/bin/youtube-dl", "--config-location", "/configs/youtube-dl.conf"])
+        run(["/usr/local/bin/yt-dlp", "--config-location", "/configs/youtube-dl.conf"])
         run_time = time.time() - start_time
         if run_time < intervalcounter:
             sleep_time = intervalcounter - run_time
