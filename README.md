@@ -1,1 +1,1 @@
-# youtubedl-auto
+# ytdlp-auto
