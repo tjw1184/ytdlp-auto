@@ -41,6 +41,6 @@ RUN rm -rf /var/lib/apt/lists/*
 RUN pip install --upgrade pip
 RUN pip install --upgrade youtube-dl
 
-# Runs a sync once a day
+# Runs a sync on interval
 CMD ["python", "/youtubedl/runner.py"]
 #RUN /bin/bash
