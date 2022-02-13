@@ -15,7 +15,7 @@ def main() -> None:
     
     # if no counter file copy the default
     if not path.exists("/configs/counter.txt"):
-        shutil.copyfile("/youtubedl/origconfigs/counter.txt","/configs/counter.txt") 
+        shutil.copyfile("/ytdlp/origconfigs/counter.txt","/configs/counter.txt") 
     
     # interval counter, default to 1 week 1 second (should be overrode by counter.txt)
     intervalcounter = float(604801.0)
@@ -36,12 +36,12 @@ def main() -> None:
         start_time = time.time()
         
         # if configs folder doesn't have config files then copy the defaults
-        if not path.exists("/configs/youtube-dl.conf"):
-            shutil.copyfile("/youtubedl/origconfigs/youtube-dl.conf","/configs/youtube-dl.conf")
-        if not path.exists("/configs/youtube-dl-archive.txt"):
-            shutil.copyfile("/youtubedl/origconfigs/youtube-dl-archive.txt","/configs/youtube-dl-archive.txt")
-        if not path.exists("/configs/youtube-dl-channels.txt"):
-            shutil.copyfile("/youtubedl/origconfigs/youtube-dl-channels.txt","/configs/youtube-dl-channels.txt")                     
+        if not path.exists("/configs/ytdlp.conf"):
+            shutil.copyfile("/ytdlp/origconfigs/ytdlp.conf","/configs/ytdlp.conf")
+        if not path.exists("/configs/ytdlp-archive.txt"):
+            shutil.copyfile("/ytdlp/origconfigs/ytdlp-archive.txt","/configs/ytdlp-archive.txt")
+        if not path.exists("/configs/ytdlp-channels.txt"):
+            shutil.copyfile("/ytdlp/origconfigs/ytdlp-channels.txt","/configs/ytdlp-channels.txt")                     
                
         # make sure running latest youtube-dl
         run(["pip", "install", "--upgrade", "pip"])      
@@ -51,7 +51,7 @@ def main() -> None:
 
         
         # run youtubedl every interval seconds
-        run(["/usr/local/bin/yt-dlp", "--config-location", "/configs/youtube-dl.conf"])
+        run(["/usr/local/bin/yt-dlp", "--config-location", "/configs/ytdlp.conf"])
         run_time = time.time() - start_time
         if run_time < intervalcounter:
             sleep_time = intervalcounter - run_time
