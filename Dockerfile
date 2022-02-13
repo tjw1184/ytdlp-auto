@@ -43,7 +43,7 @@ RUN pip install --upgrade pycrypto
 RUN pip install --upgrade pycryptodomex
 RUN pip install --upgrade websockets
 RUN pip install --upgrade ffprobe
-RUN pip install --upgrade ffprobe3
+RUN pip install --upgrade mutagen
 RUN pip install --upgrade yt-dlp 
 
 # Runs a sync on interval
