@@ -16,10 +16,10 @@ LABEL org.label-schema.build-date=$BUILD_DATE \
       org.label-schema.schema-version="1.0"
 
 # setup paths 
-RUN mkdir /youtubedl
+RUN mkdir /ytdlp
 RUN mkdir /downloads
 RUN mkdir /configs
-RUN mkdir /youtubedl/origconfigs
+RUN mkdir /ytdlp/origconfigs
 RUN mkdir /temp
 
 ## document ports and volumes to be remapped
@@ -27,11 +27,11 @@ VOLUME /downloads
 VOLUME /configs
 
 # setup default files
-ADD runner.py /youtubedl
-ADD youtube-dl-channels.txt /youtubedl/origconfigs
-ADD youtube-dl-archive.txt /youtubedl/origconfigs
-ADD youtube-dl.conf /youtubedl/origconfigs
-ADD counter.txt /youtubedl/origconfigs
+ADD runner.py /ytdlp
+ADD ytdlp-channels.txt /ytdlp/origconfigs
+ADD ytdlp-archive.txt /ytdlp/origconfigs
+ADD ytdlp.conf /ytdlp/origconfigs
+ADD counter.txt /ytdlp/origconfigs
 
 # Update packages and install ffmpeg.  
 RUN apt-get update   
@@ -47,5 +47,5 @@ RUN pip install --upgrade mutagen
 RUN pip install --upgrade yt-dlp 
 
 # Runs a sync on interval
-CMD ["python", "/youtubedl/runner.py"]
+CMD ["python", "/ytdlp/runner.py"]
 #RUN /bin/bash
